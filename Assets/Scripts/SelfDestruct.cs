@@ -1,24 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class LoadGame : MonoBehaviour
+public class SelfDestruct : MonoBehaviour
 {
-    
+    // Start is called before the first frame update
     void Start()
     {
-        Invoke("LoadLevel", 4.0f );
+        Destroy(gameObject,4f);
     }
 
     // Update is called once per frame
     void Update()
     {
         
-    }
-
-    void LoadLevel()
-    {
-        SceneManager.LoadScene("Game1");
     }
 }
