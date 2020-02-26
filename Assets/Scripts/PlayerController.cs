@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
@@ -36,9 +37,15 @@ public class PlayerController : MonoBehaviour
         {
             ProcessTranslation();
             ProcessRotation();
+            IncreaseScore();
         }
        
 
+    }
+
+    private void IncreaseScore()
+    {
+        ScoreBoard.instance.ScoreHit(1);
     }
 
     private void ProcessTranslation()

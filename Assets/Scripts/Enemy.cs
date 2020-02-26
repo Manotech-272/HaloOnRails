@@ -5,11 +5,17 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+
+    [SerializeField] int scoreValue = 500;
+
     [SerializeField] GameObject deathFX;
     [SerializeField] Transform parent;
+
+    
     void Start()
     {
         AddNonTriggerBoxCollider();
+        
     }
 
     private void AddNonTriggerBoxCollider()
@@ -18,7 +24,7 @@ public class Enemy : MonoBehaviour
         col.isTrigger = false;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         
@@ -28,6 +34,7 @@ public class Enemy : MonoBehaviour
     {
         GameObject FX = Instantiate(deathFX, transform.position, Quaternion.identity);
         FX.transform.parent = parent;
+        ScoreBoard.instance.ScoreHit(scoreValue);
         Destroy(gameObject);
         
     }
