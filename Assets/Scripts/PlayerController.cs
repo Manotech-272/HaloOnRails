@@ -7,6 +7,8 @@ using UnityStandardAssets.CrossPlatformInput;
 public class PlayerController : MonoBehaviour
 {
 
+    [SerializeField]  GameObject[] guns;
+
     [Tooltip("m/s")][SerializeField] float xSpeed = 4f;
 
     [Header("Movement Factors")]
@@ -16,6 +18,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] float yawFactor = 2.5f;
     [SerializeField] float rollFactor = 20f;
+
+
 
     float horiz;
     float vert;
@@ -37,10 +41,32 @@ public class PlayerController : MonoBehaviour
         {
             ProcessTranslation();
             ProcessRotation();
+            ProcessFire();
             IncreaseScore();
         }
        
 
+    }
+
+    private void ProcessFire()
+    {
+        if (CrossPlatformInputManager.GetButtonDown("Fire"))
+        {
+            GunsActivate(true);
+        }
+
+        if (CrossPlatformInputManager.GetButtonUp("Fire"))
+        {
+            GunsActivate(false); ;
+        }
+    }
+
+    private void GunsActivate( bool turnOn)
+    {
+        foreach (var g in guns)
+        {
+            g.SetActive(turnOn);
+        }
     }
 
     private void IncreaseScore()
