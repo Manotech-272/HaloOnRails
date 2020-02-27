@@ -63,9 +63,14 @@ public class PlayerController : MonoBehaviour
 
     private void GunsActivate( bool turnOn)
     {
-        foreach (var g in guns)
+        int i = 0;
+        foreach (GameObject g in guns)
         {
-            g.SetActive(turnOn);
+            var a = g.GetComponent<ParticleSystem>().emission;
+            a.enabled = turnOn;
+            g.transform.GetChild(i).gameObject.SetActive(turnOn);
+            i++;
+
         }
     }
 
